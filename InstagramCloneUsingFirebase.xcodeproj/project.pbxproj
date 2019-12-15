@@ -13,6 +13,8 @@
 		DDD43FDB23A5301A00260F4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD43FD923A5301A00260F4A /* Main.storyboard */; };
 		DDD43FDD23A5302200260F4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDD43FDC23A5302200260F4A /* Assets.xcassets */; };
 		DDD43FE023A5302200260F4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD43FDE23A5302200260F4A /* LaunchScreen.storyboard */; };
+		DDD43FEC23A53F3900260F4A /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FEB23A53F3900260F4A /* UIColor+.swift */; };
+		DDD43FEE23A53F5900260F4A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FED23A53F5900260F4A /* UIView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		DDD43FDC23A5302200260F4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDD43FDF23A5302200260F4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDD43FE123A5302200260F4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DDD43FEB23A53F3900260F4A /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		DDD43FED23A53F5900260F4A /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		DDD43FD223A5301A00260F4A /* InstagramCloneUsingFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				DDD43FEF23A53FC300260F4A /* Utils */,
 				DDD43FD323A5301A00260F4A /* AppDelegate.swift */,
 				DDD43FD523A5301A00260F4A /* SceneDelegate.swift */,
 				DDD43FD723A5301A00260F4A /* ViewController.swift */,
@@ -65,6 +70,15 @@
 				DDD43FE123A5302200260F4A /* Info.plist */,
 			);
 			path = InstagramCloneUsingFirebase;
+			sourceTree = "<group>";
+		};
+		DDD43FEF23A53FC300260F4A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DDD43FEB23A53F3900260F4A /* UIColor+.swift */,
+				DDD43FED23A53F5900260F4A /* UIView+.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +153,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDD43FD823A5301A00260F4A /* ViewController.swift in Sources */,
+				DDD43FEC23A53F3900260F4A /* UIColor+.swift in Sources */,
 				DDD43FD423A5301A00260F4A /* AppDelegate.swift in Sources */,
 				DDD43FD623A5301A00260F4A /* SceneDelegate.swift in Sources */,
+				DDD43FEE23A53F5900260F4A /* UIView+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
