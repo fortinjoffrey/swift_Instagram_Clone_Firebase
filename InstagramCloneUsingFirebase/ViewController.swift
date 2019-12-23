@@ -17,13 +17,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let button = UIButton()
         button.setImage(UIImage(named: "plus_photo")?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
-        
-//        button.imageView?.layer.masksToBounds = false
-//        button.imageView?.layer.cornerRadius = button.imageView?.frame.height ?? 0
-//        button.imageView?.clipsToBounds = true
-//        button.imageView?.layer.borderColor = UIColor.black.cgColor
-        
-        
         return button
     }()
     
@@ -92,7 +85,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         view.addSubview(stackView)
         
         stackView.anchor(top: plusPhotoButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topPadding: 20, leftPadding: 40, bottomPadding: 40, rightPadding: 40, width: 0, height: 200)
-                
+        
     }
     
     @objc func handleSignUp() {
@@ -117,14 +110,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             let filename = NSUUID().uuidString
             
             let storageRef = Storage.storage().reference().child("profile_images").child(filename)
-                        
+            
             storageRef.putData(uploadData, metadata: nil) { (metadata, err) in
                 
                 if let err = err {
                     print("Failed to upload profile image : ", err)
                     return
                 }
-                                                
+                
                 storageRef.downloadURL { (downloadURL, err) in
                     if let err = err {
                         print("Failed to fetch download URL : ", err)
@@ -135,26 +128,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     
                     print("Successfully uploaded profile image : ", profileImageURL)
                     
-                    
-                    
                     guard let uid = result?.user.uid else { return }
-
+                    
                     let dicrionnaryValues = ["username":username, "profileImageUrl":profileImageURL]
+                    
                     let values = [uid:dicrionnaryValues]
+                    
                     Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
-
+                        
                         if let err = err {
                             print("Failed to save username : ", err)
                             return
                         }
-
                         print("Successfully saved username")
                     }
-                    
-                    
                 }
             }
-        
         }
     }
     

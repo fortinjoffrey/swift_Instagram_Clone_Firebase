@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,8 @@
 		DDD43FE023A5302200260F4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD43FDE23A5302200260F4A /* LaunchScreen.storyboard */; };
 		DDD43FEC23A53F3900260F4A /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FEB23A53F3900260F4A /* UIColor+.swift */; };
 		DDD43FEE23A53F5900260F4A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FED23A53F5900260F4A /* UIView+.swift */; };
+		DDF12B9B23B0EAD9003CA4DB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF12B9A23B0EAD9003CA4DB /* MainTabBarController.swift */; };
+		DDF12B9D23B0F78F003CA4DB /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF12B9C23B0F78F003CA4DB /* UserProfileController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		DDD43FE123A5302200260F4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDD43FEB23A53F3900260F4A /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		DDD43FED23A53F5900260F4A /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		DDF12B9A23B0EAD9003CA4DB /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		DDF12B9C23B0F78F003CA4DB /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +66,6 @@
 				64EE1A9FC1A3F79DEB4BB7A6 /* Pods-InstagramCloneUsingFirebase.debug.xcconfig */,
 				AE928F3E6E4C6AFC7496B471 /* Pods-InstagramCloneUsingFirebase.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -96,6 +99,8 @@
 				DDD43FDC23A5302200260F4A /* Assets.xcassets */,
 				DDD43FDE23A5302200260F4A /* LaunchScreen.storyboard */,
 				DDD43FE123A5302200260F4A /* Info.plist */,
+				DDF12B9A23B0EAD9003CA4DB /* MainTabBarController.swift */,
+				DDF12B9C23B0F78F003CA4DB /* UserProfileController.swift */,
 			);
 			path = InstagramCloneUsingFirebase;
 			sourceTree = "<group>";
@@ -227,7 +232,9 @@
 			files = (
 				DDD43FD823A5301A00260F4A /* ViewController.swift in Sources */,
 				DDD43FEC23A53F3900260F4A /* UIColor+.swift in Sources */,
+				DDF12B9B23B0EAD9003CA4DB /* MainTabBarController.swift in Sources */,
 				DDD43FD423A5301A00260F4A /* AppDelegate.swift in Sources */,
+				DDF12B9D23B0F78F003CA4DB /* UserProfileController.swift in Sources */,
 				DDD43FD623A5301A00260F4A /* SceneDelegate.swift in Sources */,
 				DDD43FEE23A53F5900260F4A /* UIView+.swift in Sources */,
 			);
