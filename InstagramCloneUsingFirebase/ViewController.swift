@@ -8,12 +8,22 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let plusPhotoButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "plus_photo")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handlePlusPhoto), for: .touchUpInside)
+        
+//        button.imageView?.layer.masksToBounds = false
+//        button.imageView?.layer.cornerRadius = button.imageView?.frame.height ?? 0
+//        button.imageView?.clipsToBounds = true
+//        button.imageView?.layer.borderColor = UIColor.black.cgColor
+        
+        
         return button
     }()
     
@@ -99,6 +109,52 @@ class ViewController: UIViewController {
             }
             
             print("Successfully created user : ", result?.user.uid ?? 0)
+            
+            guard let image = self.plusPhotoButton.imageView?.image else { return }
+            
+            guard let uploadData = image.jpegData(compressionQuality: 0.3) else { return }
+            
+            let filename = NSUUID().uuidString
+            
+            let storageRef = Storage.storage().reference().child("profile_images").child(filename)
+                        
+            storageRef.putData(uploadData, metadata: nil) { (metadata, err) in
+                
+                if let err = err {
+                    print("Failed to upload profile image : ", err)
+                    return
+                }
+                                                
+                storageRef.downloadURL { (downloadURL, err) in
+                    if let err = err {
+                        print("Failed to fetch download URL : ", err)
+                        return
+                    }
+                    
+                    guard let profileImageURL = downloadURL?.absoluteString else { return }
+                    
+                    print("Successfully uploaded profile image : ", profileImageURL)
+                    
+                    
+                    
+                    guard let uid = result?.user.uid else { return }
+
+                    let dicrionnaryValues = ["username":username, "profileImageUrl":profileImageURL]
+                    let values = [uid:dicrionnaryValues]
+                    Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
+
+                        if let err = err {
+                            print("Failed to save username : ", err)
+                            return
+                        }
+
+                        print("Successfully saved username")
+                    }
+                    
+                    
+                }
+            }
+        
         }
     }
     
@@ -110,5 +166,29 @@ class ViewController: UIViewController {
         
         signUpButton.backgroundColor = isFormValid ? UIColor.rgb(r: 17, g: 154, b: 237) :  UIColor.rgb(r: 149, g: 204, b: 244)
         signUpButton.isEnabled = isFormValid
+    }
+    
+    @objc func handlePlusPhoto() {
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)    
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[.editedImage] as? UIImage {
+            plusPhotoButton.setImage(editedImage, for: .normal)
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            plusPhotoButton.setImage(originalImage, for: .normal)
+        }
+        
+        dismiss(animated: true, completion: nil)
+        
+        plusPhotoButton.layer.masksToBounds = true
+        plusPhotoButton.layer.cornerRadius = plusPhotoButton.frame.width / 2
+        plusPhotoButton.layer.borderColor = UIColor.black.cgColor
+        plusPhotoButton.layer.borderWidth = 3
     }
 }
