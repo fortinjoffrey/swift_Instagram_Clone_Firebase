@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8AC652C5A59EA16DF3EA2F09 /* Pods_InstagramCloneUsingFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9C2B0F690CB5DB69CB4CC7 /* Pods_InstagramCloneUsingFirebase.framework */; };
+		DD5BFAA623C8AF4800690B3B /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5BFAA523C8AF4800690B3B /* UserProfileHeader.swift */; };
 		DD6CADF523A637B8005E3661 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD6CADF423A637B8005E3661 /* GoogleService-Info.plist */; };
 		DDD43FD423A5301A00260F4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FD323A5301A00260F4A /* AppDelegate.swift */; };
 		DDD43FD623A5301A00260F4A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FD523A5301A00260F4A /* SceneDelegate.swift */; };
@@ -25,6 +26,7 @@
 		64EE1A9FC1A3F79DEB4BB7A6 /* Pods-InstagramCloneUsingFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramCloneUsingFirebase.debug.xcconfig"; path = "Target Support Files/Pods-InstagramCloneUsingFirebase/Pods-InstagramCloneUsingFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		6D9C2B0F690CB5DB69CB4CC7 /* Pods_InstagramCloneUsingFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramCloneUsingFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE928F3E6E4C6AFC7496B471 /* Pods-InstagramCloneUsingFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstagramCloneUsingFirebase.release.xcconfig"; path = "Target Support Files/Pods-InstagramCloneUsingFirebase/Pods-InstagramCloneUsingFirebase.release.xcconfig"; sourceTree = "<group>"; };
+		DD5BFAA523C8AF4800690B3B /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		DD6CADF423A637B8005E3661 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DDD43FD023A5301A00260F4A /* InstagramCloneUsingFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramCloneUsingFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD43FD323A5301A00260F4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DD5BFAA423C8AF1500690B3B /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				DDF12B9C23B0F78F003CA4DB /* UserProfileController.swift */,
+				DD5BFAA523C8AF4800690B3B /* UserProfileHeader.swift */,
+			);
+			path = UserProfile;
+			sourceTree = "<group>";
+		};
 		DDD43FC723A5301900260F4A = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +101,7 @@
 		DDD43FD223A5301A00260F4A /* InstagramCloneUsingFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				DD5BFAA423C8AF1500690B3B /* UserProfile */,
 				DD6CADF423A637B8005E3661 /* GoogleService-Info.plist */,
 				DDD43FEF23A53FC300260F4A /* Utils */,
 				DDD43FD323A5301A00260F4A /* AppDelegate.swift */,
@@ -100,7 +112,6 @@
 				DDD43FDE23A5302200260F4A /* LaunchScreen.storyboard */,
 				DDD43FE123A5302200260F4A /* Info.plist */,
 				DDF12B9A23B0EAD9003CA4DB /* MainTabBarController.swift */,
-				DDF12B9C23B0F78F003CA4DB /* UserProfileController.swift */,
 			);
 			path = InstagramCloneUsingFirebase;
 			sourceTree = "<group>";
@@ -233,6 +244,7 @@
 				DDD43FD823A5301A00260F4A /* ViewController.swift in Sources */,
 				DDD43FEC23A53F3900260F4A /* UIColor+.swift in Sources */,
 				DDF12B9B23B0EAD9003CA4DB /* MainTabBarController.swift in Sources */,
+				DD5BFAA623C8AF4800690B3B /* UserProfileHeader.swift in Sources */,
 				DDD43FD423A5301A00260F4A /* AppDelegate.swift in Sources */,
 				DDF12B9D23B0F78F003CA4DB /* UserProfileController.swift in Sources */,
 				DDD43FD623A5301A00260F4A /* SceneDelegate.swift in Sources */,
