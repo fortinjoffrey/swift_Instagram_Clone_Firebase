@@ -7,44 +7,36 @@
 //
 
 import UIKit
-import SwiftUI
+import Firebase
 
 class MainTabBarController: UITabBarController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let layout = UICollectionViewFlowLayout()
-        
-        let userProfileController = UserProfileController(collectionViewLayout: layout)
-        
-        let navController = UINavigationController(rootViewController: userProfileController)
-        
-        navController.tabBarItem.selectedImage = UIImage(named: "profile_selected")?.withRenderingMode(.alwaysOriginal)
-        navController.tabBarItem.image = UIImage(named: "profile_unselected")?.withRenderingMode(.alwaysOriginal)
-//
-//        navController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
-//        navController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
-        tabBar.tintColor = .black
-        viewControllers = [navController, UIViewController()]
-    }
-}
-
-// This is for preview
-struct MainPreview: PreviewProvider {
-    static var previews: some View {
-        ContainerView()
-        .previewDevice("iPhone 11")
-
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    view.backgroundColor = .white
+    
+    if Auth.auth().currentUser == nil {
+      DispatchQueue.main.async {
+        let loginController = LoginController()
+        let navController = UINavigationController(rootViewController: loginController)
+        navController.modalPresentationStyle = .fullScreen
+        self.present(navController, animated: true, completion: nil)
+      }
+      return
     }
     
-    struct ContainerView: UIViewControllerRepresentable {
-        
-        func makeUIViewController(context: UIViewControllerRepresentableContext<MainPreview.ContainerView>) -> UIViewController {
-            return MainTabBarController()
-        }
-        
-        func updateUIViewController(_ uiViewController: MainPreview.ContainerView.UIViewControllerType, context: UIViewControllerRepresentableContext<MainPreview.ContainerView>) {
-            
-        }
-    }
+    let layout = UICollectionViewFlowLayout()
+    
+    let userProfileController = UserProfileController(collectionViewLayout: layout)
+    
+    let navController = UINavigationController(rootViewController: userProfileController)
+    
+    navController.tabBarItem.selectedImage = UIImage(named: "profile_selected")?.withRenderingMode(.alwaysOriginal)
+    navController.tabBarItem.image = UIImage(named: "profile_unselected")?.withRenderingMode(.alwaysOriginal)
+    //
+    //        navController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
+    //        navController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
+    tabBar.tintColor = .black
+    viewControllers = [navController, UIViewController()]
+  }
 }
