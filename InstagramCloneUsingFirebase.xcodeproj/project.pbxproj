@@ -19,6 +19,7 @@
 		DDD43FE023A5302200260F4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD43FDE23A5302200260F4A /* LaunchScreen.storyboard */; };
 		DDD43FEC23A53F3900260F4A /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FEB23A53F3900260F4A /* UIColor+.swift */; };
 		DDD43FEE23A53F5900260F4A /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FED23A53F5900260F4A /* UIView+.swift */; };
+		DDED8E5F24CDBC4200F74435 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED8E5E24CDBC4200F74435 /* PhotoSelectorController.swift */; };
 		DDF12B9B23B0EAD9003CA4DB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF12B9A23B0EAD9003CA4DB /* MainTabBarController.swift */; };
 		DDF12B9D23B0F78F003CA4DB /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF12B9C23B0F78F003CA4DB /* UserProfileController.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		DDD43FE123A5302200260F4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDD43FEB23A53F3900260F4A /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		DDD43FED23A53F5900260F4A /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		DDED8E5E24CDBC4200F74435 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		DDF12B9A23B0EAD9003CA4DB /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DDF12B9C23B0F78F003CA4DB /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +114,7 @@
 		DDD43FD223A5301A00260F4A /* InstagramCloneUsingFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				DDED8E5D24CDBC2600F74435 /* AddPhoto */,
 				DD191D7B24AE042400EE6A08 /* Login */,
 				DD5BFAA423C8AF1500690B3B /* UserProfile */,
 				DD6CADF423A637B8005E3661 /* GoogleService-Info.plist */,
@@ -134,6 +137,14 @@
 				DDD43FED23A53F5900260F4A /* UIView+.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		DDED8E5D24CDBC2600F74435 /* AddPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				DDED8E5E24CDBC4200F74435 /* PhotoSelectorController.swift */,
+			);
+			path = AddPhoto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +272,7 @@
 				DDD43FD423A5301A00260F4A /* AppDelegate.swift in Sources */,
 				DDF12B9D23B0F78F003CA4DB /* UserProfileController.swift in Sources */,
 				DDD43FEE23A53F5900260F4A /* UIView+.swift in Sources */,
+				DDED8E5F24CDBC4200F74435 /* PhotoSelectorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
