@@ -64,14 +64,20 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         return button
     }()
     
-    let logInButton: UIButton = {
+    let alreadyHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Already have an account? Log In.", for: .normal)
-        button.addTarget(self, action: #selector(handleShowLogIn), for: .touchUpInside)
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        attributedTitle.append(NSAttributedString(string: "Sign in", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(r: 17, g: 154, b: 237)]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: #selector(handleAlreadyHaveAccount), for: .touchUpInside)
         return button
     }()
     
     @objc fileprivate func handleShowLogIn() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc fileprivate func handleAlreadyHaveAccount() {
         navigationController?.popViewController(animated: true)
     }
     
@@ -85,8 +91,8 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
         
         setupInputFields()
         
-        view.addSubview(logInButton)
-        logInButton.anchor(top: nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 50)
+        view.addSubview(alreadyHaveAccountButton)
+        alreadyHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 50)
     }
     
     fileprivate func setupInputFields() {
