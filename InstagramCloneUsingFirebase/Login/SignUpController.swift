@@ -162,6 +162,12 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                             return
                         }
                         print("Successfully saved username")
+                        
+                        guard let mainTabBarController = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first?.rootViewController as? MainTabBarController else { return }
+                        
+                        mainTabBarController.setupViewControllers()
+                        
+                        self.dismiss(animated: true, completion: nil)
                     }
                 }
             }
