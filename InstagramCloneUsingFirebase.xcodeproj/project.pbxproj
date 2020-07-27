@@ -13,6 +13,7 @@
 		DD5BFAA623C8AF4800690B3B /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5BFAA523C8AF4800690B3B /* UserProfileHeader.swift */; };
 		DD6CADF523A637B8005E3661 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD6CADF423A637B8005E3661 /* GoogleService-Info.plist */; };
 		DD7DE08C24CF096B00034076 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7DE08B24CF096B00034076 /* PhotoSelectorCell.swift */; };
+		DD7DE08E24CF126F00034076 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7DE08D24CF126F00034076 /* PhotoSelectorHeader.swift */; };
 		DDD43FD423A5301A00260F4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FD323A5301A00260F4A /* AppDelegate.swift */; };
 		DDD43FD823A5301A00260F4A /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FD723A5301A00260F4A /* SignUpController.swift */; };
 		DDD43FDB23A5301A00260F4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD43FD923A5301A00260F4A /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 		DD5BFAA523C8AF4800690B3B /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		DD6CADF423A637B8005E3661 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD7DE08B24CF096B00034076 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
+		DD7DE08D24CF126F00034076 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 		DDD43FD023A5301A00260F4A /* InstagramCloneUsingFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramCloneUsingFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD43FD323A5301A00260F4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDD43FD723A5301A00260F4A /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				DDED8E5E24CDBC4200F74435 /* PhotoSelectorController.swift */,
 				DD7DE08B24CF096B00034076 /* PhotoSelectorCell.swift */,
+				DD7DE08D24CF126F00034076 /* PhotoSelectorHeader.swift */,
 			);
 			path = AddPhoto;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD7DE08E24CF126F00034076 /* PhotoSelectorHeader.swift in Sources */,
 				DD7DE08C24CF096B00034076 /* PhotoSelectorCell.swift in Sources */,
 				DDD43FD823A5301A00260F4A /* SignUpController.swift in Sources */,
 				DDD43FEC23A53F3900260F4A /* UIColor+.swift in Sources */,
