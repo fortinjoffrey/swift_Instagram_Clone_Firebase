@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Photos
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
@@ -16,14 +17,28 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         let index = viewControllers?.firstIndex(of: viewController)
         
         if index == 2 {
-            let layout = UICollectionViewFlowLayout()
-            let photoSelectorController = PhotoSelectorController(collectionViewLayout: layout)
-            let navController = UINavigationController(rootViewController: photoSelectorController)
-            navController.modalPresentationStyle = .fullScreen
-            present(navController, animated: true, completion: nil)
+            PHPhotoLibrary.requestAuthorization { (authStatus) in
+                if authStatus == .authorized {
+                    DispatchQueue.main.async {
+                        let layout = UICollectionViewFlowLayout()
+                        let photoSelectorController = PhotoSelectorController(collectionViewLayout: layout)
+                        let navController = UINavigationController(rootViewController: photoSelectorController)
+                        navController.modalPresentationStyle = .fullScreen
+                        self.present(navController, animated: true, completion: nil)
+                    }
+                }
+                else {
+                    DispatchQueue.main.async {
+                        let alertController = UIAlertController(title: "Access denied", message: "This app does not have access to your photos or video. \nYou can enable access in Privacy Settings", preferredStyle: .actionSheet)
+                        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alertController.addAction(action)
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                    
+                }
+            }
             return false
         }
-        
         return true
     }
   override func viewDidLoad() {
