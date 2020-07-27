@@ -79,6 +79,9 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         
         self.selectedImage = images[indexPath.item]
         collectionView.reloadData()
+        
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
     
     
@@ -91,8 +94,12 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
         return CGSize(width: width, height: width)
     }
     
+    var header: PhotoSelectorHeader?
+    
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoSelectorHeader
+        
+        self.header = header
         
         header.photoImageView.image = selectedImage
         
@@ -149,6 +156,8 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
     
     @objc fileprivate func handleNext() {
-        print("Handling next")
+        let sharePhotoController = SharePhotoController()
+        sharePhotoController.selectedImage = header?.photoImageView.image
+        navigationController?.pushViewController(sharePhotoController, animated: true)
     }
 }
