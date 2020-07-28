@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseDatabase
+import FirebaseAuth
 
 class SharePhotoController: UIViewController {
     
@@ -54,7 +57,70 @@ class SharePhotoController: UIViewController {
         
     }
     
+    fileprivate func setShareButtonEnabled(enabled: Bool) {
+          navigationItem.rightBarButtonItem?.isEnabled = enabled
+    }
+    
     @objc fileprivate func handleShare() {
-        print("Sharing photo")
+        guard let caption = textView.text, caption.count > 0 else { return }
+        guard let image = selectedImage else { return }
+        
+        guard let uploadData = image.jpegData(compressionQuality: 0.5) else { return }
+        
+        setShareButtonEnabled(enabled: false)
+        
+        let filename = NSUUID().uuidString
+        let reference = Storage.storage().reference().child("posts").child(filename)
+        reference.putData(uploadData, metadata: nil) { (metadata, err) in
+            
+            if let err = err {
+                self.setShareButtonEnabled(enabled: true)
+                print("Failed to upload post image: ", err)
+                return
+            }
+            
+            reference.downloadURL(completion: { (url, err) in
+                if let err = err {
+                    self.setShareButtonEnabled(enabled: true)
+                    print("Failed to download url: ", err)
+                    return
+                }
+                
+                guard let imageUrl = url?.absoluteString else { return }
+                print("Successfully uploaded post image: ", imageUrl)
+                self.saveToDatabaseWithImageUrl(imageUrl: imageUrl)
+            })
+        }
+    }
+    
+    fileprivate func saveToDatabaseWithImageUrl(imageUrl: String) {
+        
+        guard let postImage = selectedImage else { return }
+        guard let caption = textView.text else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let userPostRef = Database.database().reference().child("posts").child(uid)
+        
+        let values = ["imageUrl": imageUrl,
+                      "caption": caption,
+                      "imageWidth": postImage.size.width,
+                      "imageHeight": postImage.size.height,
+                      "creationDate": Date().timeIntervalSince1970
+            ] as [String : Any]
+        let ref = userPostRef.childByAutoId()
+        
+        
+        ref.updateChildValues(values) { (err, reference) in
+            if let err = err {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                print("Failed to save post to DB: ", err)
+                return
+            }
+            
+            print("Successfully saved post to DB")
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        
     }
 }
