@@ -9,15 +9,17 @@
 import UIKit
 import FirebaseDatabase
 
-class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     let cellId = "cellId"
     
     var users = [User]()
+    var filteredUsers = [User]()
     
-    let searchBar: UISearchBar = {
+    lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
         sb.placeholder = "Enter username"
+        sb.delegate = self
         return sb
     }()
     
@@ -54,6 +56,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
                 
                 self.users.append(user)
             }
+            self.filteredUsers = self.users
             self.collectionView.reloadData()
         }) { (err) in
             print("Failed to fetch users for search: ", err)
@@ -61,18 +64,31 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return users.count
+        return filteredUsers.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserSearchCell
         
-        cell.user = users[indexPath.item]
+        cell.user = filteredUsers[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 66)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText.isEmpty {
+            filteredUsers = users
+        } else {
+            filteredUsers = users.filter { (user) -> Bool in
+                return user.username.contains(searchText)
+            }
+        }
+        
+        self.collectionView.reloadData()
     }
     
 }
