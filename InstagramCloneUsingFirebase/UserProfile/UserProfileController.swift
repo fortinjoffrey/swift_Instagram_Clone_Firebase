@@ -38,7 +38,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             
             guard let dictionary = snapshot.value as? [String: Any] else { return }
             
-            let post = Post(dictionary: dictionary)
+            guard let user = self.user else { return }
+            
+            let post = Post(user: user, dictionary: dictionary)
+            
             self.posts.append(post)
             
             self.collectionView.reloadData()
@@ -123,15 +126,5 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         }) { (err) in
             print("Failed to observe ")
         }
-    }
-}
-
-struct User {
-    let username: String
-    let profileImageUrl: String
-    
-    init(dictionary: [String:Any]) {
-        self.username = dictionary["username"] as? String ?? ""
-        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
     }
 }
