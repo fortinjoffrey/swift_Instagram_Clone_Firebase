@@ -19,7 +19,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
         collectionView.backgroundColor = .white
         
-        collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(HomeFeedCell.self, forCellWithReuseIdentifier: cellId)
         
         setupNavigationItems()
         
@@ -58,13 +58,18 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomePostCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomeFeedCell
         
         cell.post = posts[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 200)
+        var height: CGFloat = 40 + 8 + 8 // header height + 2* vertical padding
+        height += view.frame.width       // 1:1 ratio for post image
+        height += 50                     // action buttons height
+        height += 60                     // text caption height (will need to adapt in future)
+        
+        return CGSize(width: view.frame.width, height: height)
     }
 }
