@@ -84,7 +84,7 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
             filteredUsers = users
         } else {
             filteredUsers = users.filter { (user) -> Bool in
-                return user.username.contains(searchText)
+                return user.username.lowercased().contains(searchText.lowercased())
             }
         }
         
