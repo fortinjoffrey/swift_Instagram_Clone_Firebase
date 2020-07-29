@@ -114,17 +114,11 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        Database.database().reference().child("users").child(uid).observe(.value, with: { (snapshot) in
-            guard let dictionary = snapshot.value as? [String:Any] else { return }
-            
-            self.user = User(dictionary: dictionary)
-            
+        Database.fetchUserWithUID(uid: uid) { (user) in
+            self.user = user
             self.navigationItem.title = self.user?.username
-            
             // will call again viewForSupplementaryElemntOfKind
             self.collectionView.reloadData()
-        }) { (err) in
-            print("Failed to observe ")
         }
     }
 }
