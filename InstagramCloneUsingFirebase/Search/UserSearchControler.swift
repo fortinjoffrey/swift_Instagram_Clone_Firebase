@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let cellId = "cellId"
+    
+    var users = [User]()
     
     let searchBar: UISearchBar = {
         let sb = UISearchBar()
@@ -31,15 +34,40 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         collectionView.register(UserSearchCell.self, forCellWithReuseIdentifier: cellId)
         
         collectionView.alwaysBounceVertical = true
+        
+        fetchUsers()
+    }
+    
+    fileprivate func fetchUsers() {
+        print("Fetching users")
+        
+        let ref = Database.database().reference().child("users")
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+            
+            dictionaries.forEach { (key, value) in
+                
+                guard let userDictionary = value as? [String: Any] else { return }
+                
+                let user = User(uid: key, dictionary: userDictionary)
+                
+                self.users.append(user)
+            }
+            self.collectionView.reloadData()
+        }) { (err) in
+            print("Failed to fetch users for search: ", err)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return users.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserSearchCell
         
+        cell.user = users[indexPath.item]
         return cell
     }
     
