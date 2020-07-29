@@ -56,6 +56,10 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
                 
                 self.users.append(user)
             }
+            self.users.sort { (u1, u2) -> Bool in
+                return u1.username.caseInsensitiveCompare(u2.username) == .orderedAscending
+            }
+            
             self.filteredUsers = self.users
             self.collectionView.reloadData()
         }) { (err) in
