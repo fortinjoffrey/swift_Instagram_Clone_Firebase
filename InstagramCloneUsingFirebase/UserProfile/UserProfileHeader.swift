@@ -58,6 +58,11 @@ class UserProfileHeader: UICollectionViewCell {
         
         guard let userId = user?.uid else { return }
         
+        if currentLoggedInUserId == userId {
+            editProfileFollowButton.isEnabled = false
+            return
+        }
+        
         if editProfileFollowButton.titleLabel?.text == "Unfollow" {
             // Unfollow
             let ref = Database.database().reference().child("following").child(currentLoggedInUserId).child(userId)
