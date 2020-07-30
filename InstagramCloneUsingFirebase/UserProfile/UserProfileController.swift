@@ -13,6 +13,11 @@ import FirebaseDatabase
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var user:User?
+    
+    var userId: String?
+    
+    var posts = [Post]()
+    
     let cellId = "cellId"
     let headerId = "headerId"
     
@@ -23,34 +28,11 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
         
         collectionView.backgroundColor = .white
-        fetchUser()
         
         setupLogOutButton()
         
-        fetchOrderedPosts()
+        fetchUser()
     }
-    
-    fileprivate func fetchOrderedPosts() {
-        
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let ref = Database.database().reference().child("posts").child(uid)
-        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
-            
-            guard let dictionary = snapshot.value as? [String: Any] else { return }
-            
-            guard let user = self.user else { return }
-            
-            let post = Post(user: user, dictionary: dictionary)
-            
-            self.posts.insert(post, at: 0)
-            
-            self.collectionView.reloadData()
-        }) { (err) in
-            print("Failed to fetch ordered posts: ", err)
-        }
-    }
-    
-    var posts = [Post]()
     
     fileprivate func setupLogOutButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogOut))
@@ -72,6 +54,40 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
         
+    }
+    
+    fileprivate func fetchUser() {
+        
+        let uid = userId ?? Auth.auth().currentUser?.uid ?? ""
+        
+        Database.fetchUserWithUID(uid: uid) { (user) in
+            self.user = user
+            // will call again viewForSupplementaryElemntOfKind
+            self.collectionView.reloadData()
+            
+            self.fetchOrderedPosts()
+        }
+    }
+    
+    fileprivate func fetchOrderedPosts() {
+        
+        guard let uid = user?.uid else { return }
+        
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            
+            guard let user = self.user else { return }
+            
+            let post = Post(user: user, dictionary: dictionary)
+            
+            self.posts.insert(post, at: 0)
+            
+            self.collectionView.reloadData()
+        }) { (err) in
+            print("Failed to fetch ordered posts: ", err)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -108,17 +124,5 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 200)
-    }
-    
-    fileprivate func fetchUser() {
-        
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        Database.fetchUserWithUID(uid: uid) { (user) in
-            self.user = user
-            self.navigationItem.title = self.user?.username
-            // will call again viewForSupplementaryElemntOfKind
-            self.collectionView.reloadData()
-        }
     }
 }

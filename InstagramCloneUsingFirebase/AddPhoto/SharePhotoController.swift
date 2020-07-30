@@ -21,7 +21,6 @@ class SharePhotoController: UIViewController {
     
     let imageView:UIImageView = {
        let iv = UIImageView()
-        iv.backgroundColor = .red
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv
