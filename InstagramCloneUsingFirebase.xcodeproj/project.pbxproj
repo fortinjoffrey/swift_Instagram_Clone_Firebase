@@ -11,6 +11,7 @@
 		DD191D7D24AE044100EE6A08 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD191D7C24AE044100EE6A08 /* LoginController.swift */; };
 		DD191D7F24AE0BDA00EE6A08 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD191D7E24AE0BDA00EE6A08 /* SceneDelegate.swift */; };
 		DD51C37324D2E3E900D2993B /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD51C37224D2E3E900D2993B /* Date+.swift */; };
+		DD51C37624D305D200D2993B /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD51C37524D305D200D2993B /* CameraController.swift */; };
 		DD5BFAA623C8AF4800690B3B /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5BFAA523C8AF4800690B3B /* UserProfileHeader.swift */; };
 		DD6CADF523A637B8005E3661 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD6CADF423A637B8005E3661 /* GoogleService-Info.plist */; };
 		DD6FB69B24D1612B00BC7AB6 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6FB69A24D1612B00BC7AB6 /* CustomImageView.swift */; };
@@ -44,6 +45,7 @@
 		DD191D7C24AE044100EE6A08 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		DD191D7E24AE0BDA00EE6A08 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DD51C37224D2E3E900D2993B /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		DD51C37524D305D200D2993B /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		DD5BFAA523C8AF4800690B3B /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		DD6CADF423A637B8005E3661 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DD6FB69A24D1612B00BC7AB6 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		DD51C37424D305C500D2993B /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				DD51C37524D305D200D2993B /* CameraController.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		DD5BFAA423C8AF1500690B3B /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +169,7 @@
 		DDD43FD223A5301A00260F4A /* InstagramCloneUsingFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				DD51C37424D305C500D2993B /* Camera */,
 				DD6FB6A624D1B2CA00BC7AB6 /* Search */,
 				DD6FB69C24D16C8000BC7AB6 /* Home */,
 				DDE7B18124D02A2F00EBCAA6 /* Models */,
@@ -332,6 +343,7 @@
 				DD6FB6A124D1731900BC7AB6 /* HomeFeedCell.swift in Sources */,
 				DDD43FD823A5301A00260F4A /* SignUpController.swift in Sources */,
 				DDD43FEC23A53F3900260F4A /* UIColor+.swift in Sources */,
+				DD51C37624D305D200D2993B /* CameraController.swift in Sources */,
 				DD191D7F24AE0BDA00EE6A08 /* SceneDelegate.swift in Sources */,
 				DDE7B18524D02BAC00EBCAA6 /* UserProfilePhotoCell.swift in Sources */,
 				DDE7B18324D02A3F00EBCAA6 /* Post.swift in Sources */,
@@ -494,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QD5843FU5C;
 				INFOPLIST_FILE = InstagramCloneUsingFirebase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -512,6 +525,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QD5843FU5C;
 				INFOPLIST_FILE = InstagramCloneUsingFirebase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

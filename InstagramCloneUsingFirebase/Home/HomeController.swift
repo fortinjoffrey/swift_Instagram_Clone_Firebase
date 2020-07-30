@@ -101,9 +101,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
     }
     
+  
     fileprivate func setupNavigationItems() {
         navigationItem.titleView = UIImageView(image: UIImage(named: "logo2"))
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "camera3")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleCamera))
+    }
+    
+    @objc fileprivate func handleCamera() {
+        print("Showing camera")
+        
+        let cameraController = CameraController()
+        cameraController.modalPresentationStyle = .fullScreen
+        present(cameraController, animated: true, completion: nil)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
