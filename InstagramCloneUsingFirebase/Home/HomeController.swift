@@ -113,7 +113,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomeFeedCell
         
-        cell.post = posts[indexPath.item]
+        if indexPath.item < posts.count {
+            cell.post = posts[indexPath.item]
+        }
+        
         return cell
     }
     
