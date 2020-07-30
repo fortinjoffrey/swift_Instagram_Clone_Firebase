@@ -18,6 +18,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: SharePhotoController.updateFeedNotificationName, object: nil)
+        
         collectionView.backgroundColor = .white
         
         collectionView.register(HomeFeedCell.self, forCellWithReuseIdentifier: cellId)
@@ -28,6 +30,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         setupNavigationItems()
         
         fetchAllPosts()
+    }
+    
+    @objc fileprivate func handleUpdateFeed() {
+        handleRefresh()
     }
     
     @objc fileprivate func handleRefresh() {
