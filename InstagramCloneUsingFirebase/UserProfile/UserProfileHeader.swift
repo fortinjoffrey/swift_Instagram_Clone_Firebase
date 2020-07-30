@@ -113,7 +113,7 @@ class UserProfileHeader: UICollectionViewCell {
         
         setupBottomToolbar()
         
-        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: gridButton.topAnchor , right: rightAnchor, topPadding: 4, leftPadding: 12, bottomPadding: 12, rightPadding: 0, width: 12, height: 0)
+        usernameLabel.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, bottom: gridButton.topAnchor , right: rightAnchor, topPadding: 4, leftPadding: 12, bottomPadding: 12, rightPadding: 12, width: 0, height: 0)
         
         setupUserStatsView()
         
