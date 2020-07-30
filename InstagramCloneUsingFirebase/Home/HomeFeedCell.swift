@@ -33,7 +33,7 @@ class HomeFeedCell: UICollectionViewCell {
         
         attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 4)]))
         
-        let timeAgoDisplay = post.creationDate.description
+        let timeAgoDisplay = post.creationDate.timeAgoDisplay()
         
         attributedText.append(NSAttributedString(string: timeAgoDisplay, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.gray]))
         
