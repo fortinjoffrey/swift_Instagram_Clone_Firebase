@@ -23,14 +23,24 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         setupNavigationItems()
         
-        fetchPosts()
+        fetchFollowingUserPosts()
     }
     
-    fileprivate func fetchPosts() {
+    fileprivate func fetchFollowingUserPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("following").child(uid)
         
-        Database.fetchUserWithUID(uid: uid) { user in
-             self.fetchPostsWithUser(user: user)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let userIdsDictionary = snapshot.value as? [String: Any] else { return }
+            
+            userIdsDictionary.forEach { (key, value) in
+                Database.fetchUserWithUID(uid: key) { (user) in
+                    self.fetchPostsWithUser(user: user)
+                }
+            }
+        }) { (err) in
+            print("Failed to fetch following users uid: ", err)
         }
     }
     
