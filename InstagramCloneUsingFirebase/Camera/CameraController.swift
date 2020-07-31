@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class CameraController: UIViewController {
+class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     let dismissButton: UIButton = {
         let button = UIButton(type: .system)
@@ -27,10 +27,6 @@ class CameraController: UIViewController {
     
     @objc fileprivate func handleDismiss() {
         dismiss(animated: true, completion: nil)
-    }
-    
-    @objc fileprivate func handleCapturePhoto() {
-        print("Capturing photo")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -56,6 +52,29 @@ class CameraController: UIViewController {
         dismissButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topPadding: 12, leftPadding: 0, bottomPadding: 0, rightPadding: 12, width: 50, height: 50)
     }
     
+    @objc fileprivate func handleCapturePhoto() {
+        print("Capturing photo")
+        
+        let settings = AVCapturePhotoSettings()
+        
+        guard let previewFormatType = settings.availablePreviewPhotoPixelFormatTypes.first else { return }
+        settings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String : previewFormatType]
+        
+        output.capturePhoto(with: settings, delegate: self)
+    }
+  
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        
+        guard let imageData = photo.fileDataRepresentation() else { return }
+        let previewImage = UIImage(data: imageData)
+        
+        let previewImageView = UIImageView(image: previewImage)
+        view.addSubview(previewImageView)
+        previewImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 0)
+    }
+    
+    let output = AVCapturePhotoOutput()
+    
     fileprivate func setupCaptureSession() {
         let captureSession = AVCaptureSession()
         
@@ -72,7 +91,6 @@ class CameraController: UIViewController {
         }
         
         //2. Setup outpouts
-        let output = AVCapturePhotoOutput()
         if captureSession.canAddOutput(output) {
             captureSession.addOutput(output)
         }
@@ -84,4 +102,6 @@ class CameraController: UIViewController {
         
         captureSession.startRunning()
     }
+    
+    
 }
