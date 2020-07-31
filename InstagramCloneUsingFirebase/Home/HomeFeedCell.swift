@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol HomeFeedCellDelegate {
+    func didTapComment(post: Post)
+}
+
 class HomeFeedCell: UICollectionViewCell {
+    
+    var deletegate: HomeFeedCellDelegate?
     
     var post: Post? {
         didSet {
@@ -76,9 +82,10 @@ class HomeFeedCell: UICollectionViewCell {
         return button
     }()
     
-    let commentButton: UIButton = {
+    lazy var commentButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "comment")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return button
     }()
     
@@ -101,6 +108,13 @@ class HomeFeedCell: UICollectionViewCell {
         label.numberOfLines = 0
         return label
     }()
+    
+    @objc fileprivate func handleComment() {
+        print("Handling comment")
+        
+        guard let post = post else { return }
+        deletegate?.didTapComment(post: post)
+    }
         
     override init(frame: CGRect) {
         super.init(frame: frame)

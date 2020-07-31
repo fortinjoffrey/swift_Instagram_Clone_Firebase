@@ -10,7 +10,14 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomeFeedCellDelegate {
+    
+    func didTapComment(post: Post) {
+        print(post.caption)
+        let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(commentsController, animated: true)
+    }
+    
     
     let cellId = "cellId"
     var posts = [Post]()
@@ -126,6 +133,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         if indexPath.item < posts.count {
             cell.post = posts[indexPath.item]
         }
+        
+        cell.deletegate = self
         
         return cell
     }
