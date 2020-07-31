@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Photos
 
 class PreviewPhotoContainerView: UIView {
     
     let previewImageView: UIImageView = {
         let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
         return iv
     }()
     
@@ -22,19 +24,47 @@ class PreviewPhotoContainerView: UIView {
         return button
     }()
     
+    let saveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "save_shadow")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
+        return button
+    }()
+    
     @objc fileprivate func handleCancel() {
         self.removeFromSuperview()
     }
     
+    @objc fileprivate func handleSave() {
+        guard let previewImage = previewImageView.image else { return }
+        
+        let library = PHPhotoLibrary.shared()
+        library.performChanges({
+            
+            PHAssetChangeRequest.creationRequestForAsset(from: previewImage)
+            
+        }) { (success, err) in
+            if let err = err {
+                print("Failed to save image to photo library: ", err)
+                return
+            }
+            
+            print("Successfully saved image to photo library")
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
+        backgroundColor = .black
         
         addSubview(previewImageView)
         previewImageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 0)
         
         addSubview(cancelButton)
-        cancelButton.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, topPadding: 12, leftPadding: 12, bottomPadding: 0, rightPadding: 0, width: 50, height: 50)
+        cancelButton.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, topPadding: 24, leftPadding: 24, bottomPadding: 0, rightPadding: 0, width: 50, height: 50)
+        
+        addSubview(saveButton)
+        saveButton.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: nil, topPadding: 0, leftPadding: 24, bottomPadding: 24, rightPadding: 0, width: 50, height: 50)
     }
     
     required init?(coder: NSCoder) {
