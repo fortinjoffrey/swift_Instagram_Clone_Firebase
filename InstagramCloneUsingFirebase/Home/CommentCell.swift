@@ -12,7 +12,11 @@ class CommentCell: UICollectionViewCell {
     
     var comment: Comment? {
         didSet {
-            textLabel.text = comment?.text
+            guard let comment = comment else { return }
+            guard let profileImageUrl = comment.user?.profileImageUrl else { return }
+            
+            profileImageView.loadImage(urlString: profileImageUrl)
+            textLabel.text = comment.text
         }
     }
     
@@ -24,12 +28,27 @@ class CommentCell: UICollectionViewCell {
         return label
     }()
     
+    let profileImageView: CustomImageView = {
+        let iv = CustomImageView()
+        iv.clipsToBounds = true
+        iv.contentMode = .scaleAspectFill
+        iv.backgroundColor = .blue
+        return iv
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .yellow
         
+        
+        addSubview(profileImageView)
+        profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, topPadding: 8, leftPadding: 8, bottomPadding: 0, rightPadding: 0, width: 40, height: 40)
+        profileImageView.layer.cornerRadius = 40/2
+        
         addSubview(textLabel)
-        textLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topPadding: 4, leftPadding: 4, bottomPadding: 4, rightPadding: 4, width: 0, height: 0)
+        textLabel.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, topPadding: 4, leftPadding: 4, bottomPadding: 4, rightPadding: 4, width: 0, height: 0)
+        
+        
     }
     
     required init?(coder: NSCoder) {

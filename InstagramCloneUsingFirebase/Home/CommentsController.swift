@@ -82,11 +82,17 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
             
             guard let dictionary = snapshot.value as? [String: Any] else { return }
             
-            let comment = Comment(dictionary: dictionary)
+            guard let uid = dictionary["uid"] as? String else { return }
             
-            self.comments.append(comment)
+            Database.fetchUserWithUID(uid: uid) { (user) in
+                var comment = Comment(dictionary: dictionary)
+                comment.user = user
+                self.comments.append(comment)
+                
+                self.collectionView.reloadData()
+            }
             
-            self.collectionView.reloadData()
+            
         }) { (err) in
             print("Failed to observe comments: ", err)
         }
