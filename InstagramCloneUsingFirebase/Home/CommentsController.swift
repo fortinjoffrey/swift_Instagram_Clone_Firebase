@@ -35,7 +35,7 @@ extension CommentsController {
     }
 }
 
-class CommentsController: UICollectionViewController, CommentInputAccessoryViewDelegate {
+class CommentsController: UICollectionViewController, UICollectionViewDelegateFlowLayout,CommentInputAccessoryViewDelegate {
    
     
     
@@ -48,11 +48,17 @@ class CommentsController: UICollectionViewController, CommentInputAccessoryViewD
         return commentInputAccessoryView
     }()
     
+    let cellId = "cellId"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Comments"
         collectionView.backgroundColor = .blue
+        
+        collectionView.register(CommentCell.self, forCellWithReuseIdentifier: cellId)
+        
+        fetchComments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +70,42 @@ class CommentsController: UICollectionViewController, CommentInputAccessoryViewD
         super.viewWillDisappear(animated)
         
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    var comments = [Comment]()
+    
+    fileprivate func fetchComments() {
+        guard let postId = post?.id else { return }
+        let ref = Database.database().reference().child("comments").child(postId)
+        ref.observe(.childAdded, with: { (snapshot) in
+
+            
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            
+            let comment = Comment(dictionary: dictionary)
+            
+            self.comments.append(comment)
+            
+            self.collectionView.reloadData()
+        }) { (err) in
+            print("Failed to observe comments: ", err)
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CommentCell
+        
+        cell.comment = comments[indexPath.item]
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 50)
     }
     
     override var inputAccessoryView: UIView? {
