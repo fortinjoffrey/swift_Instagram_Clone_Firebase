@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomeFeedCellDelegate {
     func didTapComment(post: Post)
+    func didTapLike(for cell: HomeFeedCell)
 }
 
 class HomeFeedCell: UICollectionViewCell {
@@ -25,6 +26,8 @@ class HomeFeedCell: UICollectionViewCell {
             
             guard let profileImageUrl = post?.user.profileImageUrl else { return }
             userProfileImageView.loadImage(urlString: profileImageUrl)
+            
+            likeButton.setImage(post?.hasLiked == true ? UIImage(named: "like_selected")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal), for: .normal)
             
             setupAttributedCaption()
         }
@@ -76,9 +79,10 @@ class HomeFeedCell: UICollectionViewCell {
         return iv
     }()
     
-    let likeButton: UIButton = {
+    lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         return button
     }()
     
@@ -114,6 +118,13 @@ class HomeFeedCell: UICollectionViewCell {
         
         guard let post = post else { return }
         deletegate?.didTapComment(post: post)
+    }
+    
+    @objc fileprivate func handleLike() {
+        print("Handling like")
+        
+        deletegate?.didTapLike(for: self)
+        
     }
         
     override init(frame: CGRect) {
