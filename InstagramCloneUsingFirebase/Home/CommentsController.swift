@@ -9,17 +9,22 @@
 import UIKit
 
 class CommentsController: UICollectionViewController {
+    
+    lazy var containerView: CommentInputAccessoryView = {
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let commentInputAccessoryView = CommentInputAccessoryView(frame: frame)
+        return commentInputAccessoryView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Comments"
         collectionView.backgroundColor = .blue
-        
-        tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("willAppear called")
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -27,5 +32,15 @@ class CommentsController: UICollectionViewController {
         super.viewWillDisappear(animated)
         
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    override var inputAccessoryView: UIView? {
+        get {
+            return containerView
+        }
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
     }
 }

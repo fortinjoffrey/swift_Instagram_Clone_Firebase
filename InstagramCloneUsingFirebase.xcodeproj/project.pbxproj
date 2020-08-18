@@ -40,6 +40,8 @@
 		DDED8E5F24CDBC4200F74435 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED8E5E24CDBC4200F74435 /* PhotoSelectorController.swift */; };
 		DDF12B9B23B0EAD9003CA4DB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF12B9A23B0EAD9003CA4DB /* MainTabBarController.swift */; };
 		DDF12B9D23B0F78F003CA4DB /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF12B9C23B0F78F003CA4DB /* UserProfileController.swift */; };
+		DDF4C80724DEDE4C0085251D /* CommentInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF4C80624DEDE4C0085251D /* CommentInputAccessoryView.swift */; };
+		DDF4C80924DEE3980085251D /* CommentInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF4C80824DEE3980085251D /* CommentInputTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,8 @@
 		DDED8E5E24CDBC4200F74435 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		DDF12B9A23B0EAD9003CA4DB /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DDF12B9C23B0F78F003CA4DB /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
+		DDF4C80624DEDE4C0085251D /* CommentInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccessoryView.swift; sourceTree = "<group>"; };
+		DDF4C80824DEE3980085251D /* CommentInputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 				DD6FB69D24D16C8E00BC7AB6 /* HomeController.swift */,
 				DD6FB6A024D1731900BC7AB6 /* HomeFeedCell.swift */,
 				DDBEB95024D42C3B009EB035 /* CommentsController.swift */,
+				DDF4C80624DEDE4C0085251D /* CommentInputAccessoryView.swift */,
+				DDF4C80824DEE3980085251D /* CommentInputTextView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDF4C80924DEE3980085251D /* CommentInputTextView.swift in Sources */,
 				DD51C37324D2E3E900D2993B /* Date+.swift in Sources */,
 				DD7DE08E24CF126F00034076 /* PhotoSelectorHeader.swift in Sources */,
 				DD7DE08C24CF096B00034076 /* PhotoSelectorCell.swift in Sources */,
@@ -370,6 +377,7 @@
 				DD191D7D24AE044100EE6A08 /* LoginController.swift in Sources */,
 				DD7DE09024CF194D00034076 /* SharePhotoController.swift in Sources */,
 				DDD43FD423A5301A00260F4A /* AppDelegate.swift in Sources */,
+				DDF4C80724DEDE4C0085251D /* CommentInputAccessoryView.swift in Sources */,
 				DDF12B9D23B0F78F003CA4DB /* UserProfileController.swift in Sources */,
 				DD6FB6A524D1AF9000BC7AB6 /* FirebaseUtils.swift in Sources */,
 				DDD43FEE23A53F5900260F4A /* UIView+.swift in Sources */,
