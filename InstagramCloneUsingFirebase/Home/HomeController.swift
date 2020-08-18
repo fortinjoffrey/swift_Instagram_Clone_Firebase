@@ -15,6 +15,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     func didTapComment(post: Post) {
         print(post.caption)
         let commentsController = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+        commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
     }
     
@@ -93,7 +94,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 
                 guard let dictionary = value as? [String: Any] else { return }
                 
-                let post = Post(user: user, dictionary: dictionary)
+                var post = Post(user: user, dictionary: dictionary)
+                post.id = key
                 
                 self.posts.append(post)
             }

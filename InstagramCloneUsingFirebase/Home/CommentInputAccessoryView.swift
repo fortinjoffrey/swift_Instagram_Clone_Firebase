@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import FirebaseDatabase
+
+protocol CommentInputAccessoryViewDelegate {
+    func didSubimt(for comment: String)
+}
 
 class CommentInputAccessoryView: UIView {
+    
+    var delegate: CommentInputAccessoryViewDelegate?
     
     fileprivate let commentTextView: CommentInputTextView = {
         let tv = CommentInputTextView()
@@ -27,7 +34,7 @@ class CommentInputAccessoryView: UIView {
     }()
     
     @objc func handleSubmit() {
-        print("Handling submit comment")
+        delegate?.didSubimt(for: commentTextView.text)
     }
     
     override init(frame: CGRect) {
