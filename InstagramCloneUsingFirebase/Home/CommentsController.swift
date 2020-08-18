@@ -85,8 +85,7 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
             guard let uid = dictionary["uid"] as? String else { return }
             
             Database.fetchUserWithUID(uid: uid) { (user) in
-                var comment = Comment(dictionary: dictionary)
-                comment.user = user
+                let comment = Comment(user: user, dictionary: dictionary)
                 self.comments.append(comment)
                 
                 self.collectionView.reloadData()
