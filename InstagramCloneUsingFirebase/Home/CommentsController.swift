@@ -55,6 +55,8 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         
         navigationItem.title = "Comments"
         collectionView.backgroundColor = .white
+        collectionView.alwaysBounceVertical = true
+        collectionView.keyboardDismissMode = .interactive
         
         collectionView.register(CommentCell.self, forCellWithReuseIdentifier: cellId)
         
