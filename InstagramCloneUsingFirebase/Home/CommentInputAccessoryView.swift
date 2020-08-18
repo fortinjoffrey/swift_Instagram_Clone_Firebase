@@ -49,6 +49,11 @@ class CommentInputAccessoryView: UIView {
         
         addSubview(commentTextView)
         commentTextView.anchor(top: topAnchor, left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: submitButton.leftAnchor, topPadding: 8, leftPadding: 8, bottomPadding: 8, rightPadding: 0, width: 0, height: 0)
+        
+        let lineSeparatorView = UIView()
+        lineSeparatorView.backgroundColor = UIColor.rgb(r: 230, g: 230, b: 230)
+        addSubview(lineSeparatorView)
+        lineSeparatorView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 1)
     }
     
     required init?(coder: NSCoder) {

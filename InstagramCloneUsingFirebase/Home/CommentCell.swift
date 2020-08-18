@@ -19,19 +19,17 @@ class CommentCell: UICollectionViewCell {
             
             attributedText.append(NSAttributedString(string: " " + comment.text, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
             
-            textLabel.attributedText = attributedText
+            textView.attributedText = attributedText
             
             profileImageView.loadImage(urlString: user.profileImageUrl)
-            
         }
     }
     
-    let textLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.numberOfLines = 0
-        label.backgroundColor = .gray
-        return label
+    let textView: UITextView = {
+        let tv = UITextView()
+        tv.font = UIFont.systemFont(ofSize: 14)
+        tv.isScrollEnabled = false
+        return tv
     }()
     
     let profileImageView: CustomImageView = {
@@ -44,15 +42,13 @@ class CommentCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .yellow
-        
         
         addSubview(profileImageView)
         profileImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, topPadding: 8, leftPadding: 8, bottomPadding: 0, rightPadding: 0, width: 40, height: 40)
         profileImageView.layer.cornerRadius = 40/2
         
-        addSubview(textLabel)
-        textLabel.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, topPadding: 4, leftPadding: 4, bottomPadding: 4, rightPadding: 4, width: 0, height: 0)
+        addSubview(textView)
+        textView.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, topPadding: 4, leftPadding: 4, bottomPadding: 4, rightPadding: 4, width: 0, height: 0)
         
         
     }
