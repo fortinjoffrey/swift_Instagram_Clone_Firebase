@@ -10,15 +10,32 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+extension UserProfileController {
+    func didChangeToGridView() {
+        isGridViewActive = true
+        collectionView.reloadData()
+    }
+    
+    func didChangeToListView() {
+        isGridViewActive = false
+        collectionView.reloadData()
+    }
+}
+
+
+
+class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UserProfileHeaderDelegate {
     
     var user:User?
     
     var userId: String?
     
+    var isGridViewActive = true
+    
     var posts = [Post]()
     
     let cellId = "cellId"
+    let homeFeedCellId = "homeFeedCellId"
     let headerId = "headerId"
     
     override func viewDidLoad() {
@@ -26,6 +43,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: headerId)
         
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(HomeFeedCell.self, forCellWithReuseIdentifier: homeFeedCellId)
         
         collectionView.backgroundColor = .white
         
@@ -93,19 +111,38 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! UserProfileHeader
         header.user = self.user
+        header.delegate = self
         return header
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
-                
-        cell.post = posts[indexPath.item]
-        return cell
+        
+        if isGridViewActive {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
+            
+            cell.post = posts[indexPath.item]
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: homeFeedCellId, for: indexPath) as! HomeFeedCell
+            cell.post = posts[indexPath.item]
+            return cell
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (view.frame.width - 2) / 3
-        return CGSize(width: width, height: width)
+        
+        if isGridViewActive {
+            let width = (view.frame.width - 2) / 3
+            return CGSize(width: width, height: width)
+        } else {
+            var height: CGFloat = 40 + 8 + 8 // header height + 2* vertical padding
+            height += view.frame.width       // 1:1 ratio for post image
+            height += 50                     // action buttons height
+            height += 60                     // text caption height (will need to adapt in future)
+            
+            return CGSize(width: view.frame.width, height: height)
+        }
     }
     
     // Horizontal spacing
