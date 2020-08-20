@@ -37,6 +37,11 @@ class CommentInputAccessoryView: UIView {
         delegate?.didSubimt(for: commentTextView.text)
     }
     
+    func clearCommentTextField() {
+        commentTextView.text = nil
+        commentTextView.showPlaceholderLabel()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -50,6 +55,10 @@ class CommentInputAccessoryView: UIView {
         addSubview(commentTextView)
         commentTextView.anchor(top: topAnchor, left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: submitButton.leftAnchor, topPadding: 8, leftPadding: 8, bottomPadding: 8, rightPadding: 0, width: 0, height: 0)
         
+        setupLineSeparatorView()
+    }
+    
+    fileprivate func setupLineSeparatorView() {
         let lineSeparatorView = UIView()
         lineSeparatorView.backgroundColor = UIColor.rgb(r: 230, g: 230, b: 230)
         addSubview(lineSeparatorView)

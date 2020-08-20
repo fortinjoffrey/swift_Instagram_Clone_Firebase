@@ -31,6 +31,8 @@ extension CommentsController {
             }
             
             print("Successfully inserted comment")
+            
+            self.containerView.clearCommentTextField()
         }
     }
 }

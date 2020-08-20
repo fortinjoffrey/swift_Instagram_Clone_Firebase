@@ -31,6 +31,10 @@ class CommentInputTextView: UITextView {
         placeholderLabel.isHidden = !text.isEmpty
     }
     
+    func showPlaceholderLabel() {
+        placeholderLabel.isHidden = false
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
