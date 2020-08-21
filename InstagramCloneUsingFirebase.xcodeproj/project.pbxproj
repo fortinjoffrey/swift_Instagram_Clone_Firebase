@@ -30,6 +30,10 @@
 		DDBEB94D24D416B8009EB035 /* CustomAnimationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBEB94C24D416B8009EB035 /* CustomAnimationPresenter.swift */; };
 		DDBEB94F24D419BA009EB035 /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBEB94E24D419BA009EB035 /* CustomAnimationDismisser.swift */; };
 		DDBEB95124D42C3B009EB035 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBEB95024D42C3B009EB035 /* CommentsController.swift */; };
+		DDCBBBB924EFD50800A85F01 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCBBBB524EFD50800A85F01 /* 1.png */; };
+		DDCBBBBA24EFD50800A85F01 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCBBBB624EFD50800A85F01 /* 3.png */; };
+		DDCBBBBB24EFD50800A85F01 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCBBBB724EFD50800A85F01 /* 2.png */; };
+		DDCBBBBC24EFD50800A85F01 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCBBBB824EFD50800A85F01 /* 4.png */; };
 		DDD43FD423A5301A00260F4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FD323A5301A00260F4A /* AppDelegate.swift */; };
 		DDD43FD823A5301A00260F4A /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD43FD723A5301A00260F4A /* SignUpController.swift */; };
 		DDD43FDB23A5301A00260F4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD43FD923A5301A00260F4A /* Main.storyboard */; };
@@ -72,6 +76,10 @@
 		DDBEB94C24D416B8009EB035 /* CustomAnimationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresenter.swift; sourceTree = "<group>"; };
 		DDBEB94E24D419BA009EB035 /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
 		DDBEB95024D42C3B009EB035 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
+		DDCBBBB524EFD50800A85F01 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		DDCBBBB624EFD50800A85F01 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		DDCBBBB724EFD50800A85F01 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		DDCBBBB824EFD50800A85F01 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		DDD43FD023A5301A00260F4A /* InstagramCloneUsingFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstagramCloneUsingFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD43FD323A5301A00260F4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDD43FD723A5301A00260F4A /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -171,6 +179,17 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		DDCBBBB424EFD48C00A85F01 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				DDCBBBB524EFD50800A85F01 /* 1.png */,
+				DDCBBBB724EFD50800A85F01 /* 2.png */,
+				DDCBBBB624EFD50800A85F01 /* 3.png */,
+				DDCBBBB824EFD50800A85F01 /* 4.png */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		DDD43FC723A5301900260F4A = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +211,7 @@
 		DDD43FD223A5301A00260F4A /* InstagramCloneUsingFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				DDCBBBB424EFD48C00A85F01 /* Screenshots */,
 				DD51C37424D305C500D2993B /* Camera */,
 				DD6FB6A624D1B2CA00BC7AB6 /* Search */,
 				DD6FB69C24D16C8000BC7AB6 /* Home */,
@@ -307,8 +327,12 @@
 			files = (
 				DDD43FE023A5302200260F4A /* LaunchScreen.storyboard in Resources */,
 				DD6CADF523A637B8005E3661 /* GoogleService-Info.plist in Resources */,
+				DDCBBBBB24EFD50800A85F01 /* 2.png in Resources */,
 				DDD43FDD23A5302200260F4A /* Assets.xcassets in Resources */,
+				DDCBBBBC24EFD50800A85F01 /* 4.png in Resources */,
+				DDCBBBBA24EFD50800A85F01 /* 3.png in Resources */,
 				DDD43FDB23A5301A00260F4A /* Main.storyboard in Resources */,
+				DDCBBBB924EFD50800A85F01 /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
