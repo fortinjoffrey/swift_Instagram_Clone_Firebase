@@ -3,6 +3,8 @@
 
 This app implements the main features of Instagram
 
+[Live demo](https://www.youtube.com/watch?v=CbHlNGV1hzE)
+
 ## Features :
   - Login / signup page w/ profile picture from photo library
   - Home Feed w/ posts from followed users
